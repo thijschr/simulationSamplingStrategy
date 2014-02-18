@@ -20,8 +20,10 @@ Sources of randomisation
 2. Spatial distibution
 3. Abundance in each grid
 4. Chances in finding the sp. that is set to be present
+  1. What about sampling error, for example not being able to find uniformly all individuals, or that we misidentify the spp.? 
 5. Patterns of environmental gradientnts
   1. real / artificial (orthogonal, covaried)
+
 
 There are several levels of randomisation and hence the possibilities for repetition. Somehow we need to be simplify. 
 
