@@ -14,27 +14,28 @@ hotspots <- function(nx, ny, nhotspot, intensity, dist) {
     add <- intensity
     for (di in 2:dist) {
       for (i in 1:(di - 1)) {
-        xj <- c(xj, xi + c(i, i, -i, -i))
-        yj <- c(yj, yi + c(i, -i, i, -i))
+        xj <- c(xj, xi + c(     i, i - di,      i, i - di))
+        yj <- c(yj, yi + c(di - i,     -i, i - di,      i))
         add <- c(add, rep(intensity / di, times = 4))
       }
-      xj <- c(xj, xi + c(di, di, -di, -di))
-      yj <- c(yj, yi + c(di, -di, di, -di))
+      xj <- c(xj, xi + c(di, 0, -di, 0))
+      yj <- c(yj, yi + c(0, -di, 0, di))
       add <- c(add, rep(intensity / di, times = 4))
     }
+    print(data.frame(xj, yj, add))
     is.in.field <- (xj >= 1) & (xj <= nx) & (yj >= 1) & (yj <= ny)
     for (ri in 1:length(add)) {
       if (!is.in.field[ri]) next
       base[xj[ri], yj[ri]] <- base[xj[ri], yj[ri]] + add[ri]
     }
   }
-  return(add)
+  return(base)
 }
 
 field[ , , 1] <- array(1, dim = c(nx, ny))
 field[ , , 2] <- apply(array(1:ny, dim = c(1, ny)), 2, rep, each = nx)
 field[ , , 3] <- apply(array(1:nx, dim = c(nx, 1)), 1, rep, each = nx)
-field[ , , 4] <- hotspots(nx, ny, nhotspot = 5, intensity = 100, dist = 5L)
+field[ , , 4] <- hotspots(nx, ny, nhotspot = 1, intensity = 100, dist = 4L)
 
 
     

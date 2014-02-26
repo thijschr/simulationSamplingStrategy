@@ -1,6 +1,6 @@
-nx <- 100
-ny <- 100
-ne <- 5
+nx <- 10
+ny <- 10
+ne <- 4
 
 field <- array(NA, dim = c(nx, ny, ne),
                dimnames = list(
